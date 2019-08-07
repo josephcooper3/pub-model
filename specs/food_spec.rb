@@ -8,7 +8,7 @@ require_relative('../food')
 class FoodTest < Minitest::Test
 
     def setup()
-        @food = Food.new("Fish and Chips", 7.50, 6)
+        @food = Food.new("Fish and Chips", 7, 6)
     end
 
     def test_food_name()
@@ -16,7 +16,7 @@ class FoodTest < Minitest::Test
     end
 
     def test_food_price()
-        assert_equal(7.50, @food.price())
+        assert_equal(7, @food.price())
     end
 
     def test_food_rejuvenation_level()

@@ -18,4 +18,8 @@ class Customer
         @drunkenness += units
     end 
 
+    def rejuvenate(units)
+        units < @drunkenness ? @drunkenness -= units : @drunkenness = 0
+    end
+
 end
