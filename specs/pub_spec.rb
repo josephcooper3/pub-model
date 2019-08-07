@@ -19,6 +19,7 @@ class PubTest < Minitest::Test
         @drinks_array.each { |drink| @pub.add_drink(drink) }
         @customer1 = Customer.new('Graham', 31, 100.00)
         @customer2 = Customer.new('Noddy', 10, 1.00)
+        @customer3 = Customer.new('Joe', 18, 1000.00)
     end
 
     def test_pub_name()
@@ -69,6 +70,22 @@ class PubTest < Minitest::Test
 
     def test_check_customer_age__false()
         assert_equal(false, @pub.check_customer_age(@customer2))
+    end
+
+    def test_check_customer_drunkeness__true()
+        10.times { @pub.sell_drink(@drink1, @customer3) }
+        assert_equal(true, @pub.check_drunk(@customer3))
+    end
+
+    def test_check_customer_drunkeness__false()
+        assert_equal(false, @pub.check_drunk(@customer3))
+    end
+
+    def test_refuse_service_when_drunk()
+        7.times { @pub.sell_drink(@drink1, @customer3) }
+        assert_equal(21, @customer3.drunkenness())
+        @pub.sell_drink(@drink1, @customer3)
+        assert_equal(21, @customer3.drunkenness())
     end
 
 end
