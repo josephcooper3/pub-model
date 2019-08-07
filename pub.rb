@@ -2,10 +2,10 @@ class Pub
 
     attr_reader(:name, :till, :drinks)
 
-    def initialize(name, till=100.00, drinks=[])
+    def initialize(name, till)
         @name = name
         @till = till
-        @drinks = drinks
+        @drinks = []
     end
 
     def add_drink(drink)
@@ -25,6 +25,7 @@ class Pub
             price = drink.price()
             increase_till(price)
             customer.decrease_wallet(price)
+            customer.get_drunk(drink.alcohol_units())
         end
     end
 
